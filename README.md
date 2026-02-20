@@ -172,6 +172,12 @@ From there, use the CSS variables anywhere in your own component styles:
   background-color: var(--color-card-bg);
   color: var(--color-text);
   border: 1px solid var(--color-card-border);
+  box-shadow: 0 2px 8px var(--color-shadow);
+}
+
+.my-card-subtitle {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
 }
 
 .my-button {
@@ -181,6 +187,12 @@ From there, use the CSS variables anywhere in your own component styles:
 
 .my-link {
   color: var(--color-link);
+}
+
+.my-input {
+  background-color: var(--color-input-bg);
+  border: 1px solid var(--color-input-border);
+  color: var(--color-text);
 }
 
 hr {
@@ -198,6 +210,7 @@ Because the variables are set on `<html>`, they cascade down to every element on
 |---|---|
 | `--color-bg` | Page / app background |
 | `--color-text` | Primary body text |
+| `--color-text-muted` | Secondary / subtitle / caption text |
 | `--color-card-bg` | Card / panel surface background |
 | `--color-card-border` | Card / panel border color |
 | `--color-btn-dark-bg` | Background for "dark" style buttons |
@@ -205,6 +218,9 @@ Because the variables are set on `<html>`, they cascade down to every element on
 | `--color-btn-light-bg` | Background for "light" style buttons |
 | `--color-btn-light-text` | Text on "light" style buttons |
 | `--color-divider` | Horizontal rules / separators |
+| `--color-input-bg` | Form input / textarea background |
+| `--color-input-border` | Form input / textarea border |
+| `--color-shadow` | Box shadow color |
 | `--color-primary` | Primary accent / brand color |
 | `--color-on-primary` | Text rendered on top of `--color-primary` |
 | `--color-link` | Hyperlink color |

@@ -29,19 +29,23 @@
  * ──────────────────────
  *   --color-bg            Page / app background
  *   --color-text          Primary body text
+ *   --color-text-muted    Secondary / subtitle / caption text
  *   --color-card-bg       Card / panel surface background
- *   --color-card-border   Card / panel border colour
+ *   --color-card-border   Card / panel border color
  *   --color-btn-dark-bg   Background for "dark" style buttons
  *   --color-btn-dark-text Text on "dark" style buttons
  *   --color-btn-light-bg  Background for "light" style buttons
  *   --color-btn-light-text Text on "light" style buttons
  *   --color-divider       Horizontal rules / separators
- *   --color-primary       Primary accent / brand colour
+ *   --color-input-bg      Form input / textarea background
+ *   --color-input-border  Form input / textarea border
+ *   --color-shadow        Box shadow color
+ *   --color-primary       Primary accent / brand color
  *   --color-on-primary    Text drawn on top of --color-primary
- *   --color-link          Hyperlink colour
+ *   --color-link          Hyperlink color
  *   --color-hover-bg      Subtle hover-state background tint
  *   --color-code-bg       Code block background
- *   --color-code-text     Code block text colour
+ *   --color-code-text     Code block text color
  *
  * ADDING A CUSTOM THEME (CSS approach)
  * ─────────────────────────────────────
@@ -73,6 +77,7 @@
 :root {
   --color-bg:             #f8f9fa;
   --color-text:           #212529;
+  --color-text-muted:     #6c757d;
   --color-card-bg:        #ffffff;
   --color-card-border:    #dee2e6;
   --color-btn-dark-bg:    #f8f9fa;
@@ -80,10 +85,13 @@
   --color-btn-light-bg:   #ffffff;
   --color-btn-light-text: #212529;
   --color-divider:        #dee2e6;
+  --color-input-bg:       #ffffff;
+  --color-input-border:   #ced4da;
+  --color-shadow:         rgba(0, 0, 0, 0.10);
 
   --color-primary:    #1976d2;
   --color-on-primary: #ffffff;
-  --color-link:       #a435f0;
+  --color-link:       #4a90e2;
   --color-hover-bg:   rgba(25, 118, 210, 0.08);
   --color-code-bg:    #282c34;
   --color-code-text:  #ffffff;
@@ -93,6 +101,7 @@
 [data-theme="dark"] {
   --color-bg:             #212529;
   --color-text:           #f8f9fa;
+  --color-text-muted:     #9ca3af;
   --color-card-bg:        #343a40;
   --color-card-border:    #444444;
   --color-btn-dark-bg:    #f8f9fa;
@@ -100,6 +109,9 @@
   --color-btn-light-bg:   #343a40;
   --color-btn-light-text: #f8f9fa;
   --color-divider:        #444444;
+  --color-input-bg:       #2d3238;
+  --color-input-border:   #555555;
+  --color-shadow:         rgba(0, 0, 0, 0.40);
 
   --color-primary:    #90caf9;
   --color-on-primary: #212529;
@@ -116,6 +128,7 @@
 [data-theme="forest"] {
   --color-bg:             #1b2e22;
   --color-text:           #cde8d4;
+  --color-text-muted:     #8aad95;
   --color-card-bg:        #243c2b;
   --color-card-border:    #3a5c44;
   --color-btn-dark-bg:    #3a5c44;
@@ -123,6 +136,9 @@
   --color-btn-light-bg:   #243c2b;
   --color-btn-light-text: #cde8d4;
   --color-divider:        #3a5c44;
+  --color-input-bg:       #1f3526;
+  --color-input-border:   #3a5c44;
+  --color-shadow:         rgba(0, 0, 0, 0.35);
 
   --color-primary:    #4caf70;
   --color-on-primary: #1b2e22;
@@ -139,6 +155,7 @@
 [data-theme="tron"] {
   --color-bg:             #0f172a;
   --color-text:           #67e8f9;
+  --color-text-muted:     #38bcd4;
   --color-card-bg:        #1e293b;
   --color-card-border:    #67e8f9;
   --color-btn-dark-bg:    #0ea5e9;
@@ -146,6 +163,9 @@
   --color-btn-light-bg:   #1e293b;
   --color-btn-light-text: #67e8f9;
   --color-divider:        #0ea5e9;
+  --color-input-bg:       #162236;
+  --color-input-border:   #38bcd4;
+  --color-shadow:         rgba(14, 165, 233, 0.15);
 
   --color-primary:    #0ea5e9;
   --color-on-primary: #0f172a;
@@ -158,11 +178,12 @@
 /* --- Midnight Theme ---
  * A deep night-sky palette: near-black background, muted
  * blue-grey text, teal (#5ce1b5) primary accent, and
- * light-blue (#8bd4ff) link colour.
+ * light-blue (#8bd4ff) link color.
  */
 [data-theme="midnight"] {
   --color-bg:             #0b1016;
   --color-text:           #e7edf2;
+  --color-text-muted:     #8fa9be;
   --color-card-bg:        #131c28;
   --color-card-border:    #263141;
   --color-btn-dark-bg:    #263141;
@@ -170,6 +191,9 @@
   --color-btn-light-bg:   #0f151e;
   --color-btn-light-text: #e7edf2;
   --color-divider:        #263141;
+  --color-input-bg:       #0f1a26;
+  --color-input-border:   #2a3e52;
+  --color-shadow:         rgba(0, 0, 0, 0.45);
 
   --color-primary:    #5ce1b5;
   --color-on-primary: #0b1016;
