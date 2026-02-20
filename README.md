@@ -233,6 +233,51 @@ Because the variables are set on `<html>`, they cascade down to every element on
 
 ---
 
+## Adding Your Own Themes
+
+Use `registerTheme()` to add a custom theme at runtime. It dynamically injects a `<style>` tag into `<head>` — no file editing required, and it works correctly in all environments including deployed builds.
+
+```jsx
+import { registerTheme, THEMES } from '@evolution-james/evolution-theme-engine';
+
+// Call before or after ThemeProvider mounts — works either way.
+registerTheme('ocean', {
+  'color-bg':             '#0a1628',
+  'color-text':           '#e0f0ff',
+  'color-primary':        '#00b4d8',
+  'color-on-primary':     '#0a1628',
+  'color-card-bg':        '#0d2137',
+  'color-card-border':    '#1a3a5c',
+  'color-divider':        '#1a3a5c',
+  'color-btn-dark-bg':    '#1a3a5c',
+  'color-btn-dark-text':  '#e0f0ff',
+  'color-btn-light-bg':   '#0d2137',
+  'color-btn-light-text': '#e0f0ff',
+  'color-link':           '#90e0ef',
+  'color-hover-bg':       'rgba(0,180,216,0.1)',
+  'color-code-bg':        '#070f1a',
+  'color-code-text':      '#e0f0ff',
+});
+```
+
+> Note: keys in the `vars` object should omit the leading `--` — `registerTheme` adds it for you.
+
+Then surface the new theme in the UI by passing a custom `themes` prop to `ThemeSelector` or `ThemeNavBar`:
+
+```jsx
+const MY_THEMES = {
+  'Light Theme': 'light',
+  'Dark Theme':  'dark',
+  'Ocean':       'ocean',
+};
+
+<ThemeSelector themes={MY_THEMES} />
+// or
+<ThemeNavBar themes={MY_THEMES} />
+```
+
+---
+
 ## How the Engine Works
 
 ```
@@ -262,81 +307,6 @@ setTheme(newTheme)                  ← called by ThemeSelector's onChange
 2. **`ThemeProvider`** stores the active theme in React state, writes it to `localStorage` for persistence, and sets the `data-theme` attribute on `<html>` via `useEffect`.
 3. **`useTheme()`** hook exposes `{ theme, setTheme }` to any component inside the provider.
 4. **`ThemeSelector`** calls `setTheme` when the user picks a different option from the dropdown.
-
----
-
-## Adding Your Own Themes
-
-There are two ways to add a custom theme.
-
-### Method 1 — Edit `themes.css` (recommended for permanent themes)
-
-Copy any existing `[data-theme]` block in `themes.css`, change the selector name, and update the variable values:
-
-```css
-/* themes.css */
-[data-theme="ocean"] {
-  --color-bg:             #0a1628;
-  --color-text:           #e0f0ff;
-  --color-card-bg:        #0d2137;
-  --color-card-border:    #1a3a5c;
-  --color-btn-dark-bg:    #1a3a5c;
-  --color-btn-dark-text:  #e0f0ff;
-  --color-btn-light-bg:   #0d2137;
-  --color-btn-light-text: #e0f0ff;
-  --color-divider:        #1a3a5c;
-
-  --color-primary:    #00b4d8;
-  --color-on-primary: #0a1628;
-  --color-link:       #90e0ef;
-  --color-hover-bg:   rgba(0, 180, 216, 0.1);
-  --color-code-bg:    #070f1a;
-  --color-code-text:  #e0f0ff;
-}
-```
-
-Then surface it in the UI by passing a custom `themes` prop to `ThemeSelector` or `ThemeNavBar`:
-
-```jsx
-const MY_THEMES = {
-  'Light Theme': 'light',
-  'Dark Theme':  'dark',
-  'Ocean':       'ocean',
-};
-
-<ThemeSelector themes={MY_THEMES} />
-// or
-<ThemeNavBar themes={MY_THEMES} />
-```
-
-### Method 2 — `registerTheme()` (runtime injection, no file editing)
-
-Call `registerTheme` once during app initialisation. It dynamically injects a `<style>` tag into `<head>`.
-
-```jsx
-import { registerTheme, THEMES } from '@evolution-james/evolution-theme-engine';
-
-// Call before or after ThemeProvider mounts — works either way.
-registerTheme('ocean', {
-  'color-bg':             '#0a1628',
-  'color-text':           '#e0f0ff',
-  'color-primary':        '#00b4d8',
-  'color-on-primary':     '#0a1628',
-  'color-card-bg':        '#0d2137',
-  'color-card-border':    '#1a3a5c',
-  'color-divider':        '#1a3a5c',
-  'color-btn-dark-bg':    '#1a3a5c',
-  'color-btn-dark-text':  '#e0f0ff',
-  'color-btn-light-bg':   '#0d2137',
-  'color-btn-light-text': '#e0f0ff',
-  'color-link':           '#90e0ef',
-  'color-hover-bg':       'rgba(0,180,216,0.1)',
-  'color-code-bg':        '#070f1a',
-  'color-code-text':      '#e0f0ff',
-});
-```
-
-> Note: keys in the `vars` object should omit the leading `--` — `registerTheme` adds it for you.
 
 ---
 
