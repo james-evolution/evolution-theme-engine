@@ -1,0 +1,46 @@
+{
+  "name": "@evolution-james/evolution-theme-engine",
+  "version": "1.0.0",
+  "description": "A plug-and-play React theme engine with CSS variable-based theming, localStorage persistence, and optional navbar component.",
+  "keywords": [
+    "react",
+    "theme",
+    "dark-mode",
+    "css-variables",
+    "theme-engine",
+    "evolution"
+  ],
+  "author": {
+    "name": "James Evolution (Evolution Coding Academy)",
+    "url": "https://github.com/james-evolution"
+  },
+  "license": "SEE LICENSE.txt",
+  "//": "BUILD NOTES: Source files are JSX (src/). The build script (build.js) uses Babel to pre-compile them into plain CommonJS JS (dist/) so consumers never need to transpile this package themselves. @babel/preset-react is configured with { runtime: 'automatic' } which uses the new JSX transform — it imports from react/jsx-runtime automatically instead of requiring React to be in scope (the classic runtime would inject React.createElement() calls that fail if React is not globally imported). @babel/preset-env compiles ESM imports/exports and modern syntax to CommonJS-compatible output. The 'exports' field below takes strict precedence over 'main' in webpack 5 and Node 12+. Without it, npm link + webpack symlink resolution can bypass 'main' and resolve to raw JSX source files the consumer's bundler cannot parse.",
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
+  },
+  "devDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0"
+  },
+  "files": [
+    "src/",
+    "dist/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/james-evolution/evolution-theme-engine.git"
+  },
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "node build.js"
+  }
+}

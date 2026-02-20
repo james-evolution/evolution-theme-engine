@@ -1,0 +1,278 @@
+/*
+ * ============================================================
+ * themes.css — Evolution Theme Engine
+ * ============================================================
+ * This file contains:
+ *   1. All built-in theme variable blocks.
+ *   2. Base html/body reset.
+ *   3. Component styles for .etn-navbar and .etn-theme-selector.
+ *
+ * HOW THEMES WORK
+ * ───────────────
+ * Each theme is a CSS block that overrides the CSS custom
+ * properties declared in :root. The active theme is selected
+ * by setting a `data-theme` attribute on the <html> element:
+ *
+ *   document.documentElement.setAttribute('data-theme', 'dark');
+ *
+ * ThemeProvider does this automatically whenever the theme changes.
+ *
+ * WHY :root MUST COME FIRST
+ * ─────────────────────────
+ * Both `:root` and `[data-theme="..."]` selectors have equal
+ * CSS specificity (0,1,0). When both selectors match the same
+ * element, the one declared LATER in the file wins. Therefore
+ * :root (the Light/default theme) MUST appear before all
+ * [data-theme] blocks so that any active theme can override it.
+ *
+ * CSS VARIABLE REFERENCE
+ * ──────────────────────
+ *   --color-bg            Page / app background
+ *   --color-text          Primary body text
+ *   --color-card-bg       Card / panel surface background
+ *   --color-card-border   Card / panel border colour
+ *   --color-btn-dark-bg   Background for "dark" style buttons
+ *   --color-btn-dark-text Text on "dark" style buttons
+ *   --color-btn-light-bg  Background for "light" style buttons
+ *   --color-btn-light-text Text on "light" style buttons
+ *   --color-divider       Horizontal rules / separators
+ *   --color-primary       Primary accent / brand colour
+ *   --color-on-primary    Text drawn on top of --color-primary
+ *   --color-link          Hyperlink colour
+ *   --color-hover-bg      Subtle hover-state background tint
+ *   --color-code-bg       Code block background
+ *   --color-code-text     Code block text colour
+ *
+ * ADDING A CUSTOM THEME (CSS approach)
+ * ─────────────────────────────────────
+ * Copy the block below, change the selector to your theme name,
+ * and update the variable values. Then add the name to your
+ * themes object and pass it to <ThemeSelector>.
+ *
+ *   [data-theme="ocean"] {
+ *     --color-bg:          #0a1628;
+ *     --color-text:        #e0f0ff;
+ *     --color-primary:     #00b4d8;
+ *     ... etc.
+ *   }
+ *
+ * Alternatively, use registerTheme() from ThemeContext.jsx to
+ * inject a theme at runtime without touching this file at all.
+ * ============================================================
+ */
+
+
+/* ============================================================
+ * 1. BUILT-IN THEMES
+ * ============================================================ */
+
+/* --- Light Theme (default) ---
+ * :root MUST appear first in this file so that every
+ * [data-theme] block below can override it.
+ */
+:root {
+  --color-bg:             #f8f9fa;
+  --color-text:           #212529;
+  --color-card-bg:        #ffffff;
+  --color-card-border:    #dee2e6;
+  --color-btn-dark-bg:    #f8f9fa;
+  --color-btn-dark-text:  #212529;
+  --color-btn-light-bg:   #ffffff;
+  --color-btn-light-text: #212529;
+  --color-divider:        #dee2e6;
+
+  --color-primary:    #1976d2;
+  --color-on-primary: #ffffff;
+  --color-link:       #a435f0;
+  --color-hover-bg:   rgba(25, 118, 210, 0.08);
+  --color-code-bg:    #282c34;
+  --color-code-text:  #ffffff;
+}
+
+/* --- Dark Theme --- */
+[data-theme="dark"] {
+  --color-bg:             #212529;
+  --color-text:           #f8f9fa;
+  --color-card-bg:        #343a40;
+  --color-card-border:    #444444;
+  --color-btn-dark-bg:    #f8f9fa;
+  --color-btn-dark-text:  #212529;
+  --color-btn-light-bg:   #343a40;
+  --color-btn-light-text: #f8f9fa;
+  --color-divider:        #444444;
+
+  --color-primary:    #90caf9;
+  --color-on-primary: #212529;
+  --color-link:       #a435f0;
+  --color-hover-bg:   rgba(144, 202, 249, 0.08);
+  --color-code-bg:    #232b36;
+  --color-code-text:  #f8f9fa;
+}
+
+/* --- Forest Theme ---
+ * A comforting deep-green palette with sage text and
+ * a natural green primary accent.
+ */
+[data-theme="forest"] {
+  --color-bg:             #1b2e22;
+  --color-text:           #cde8d4;
+  --color-card-bg:        #243c2b;
+  --color-card-border:    #3a5c44;
+  --color-btn-dark-bg:    #3a5c44;
+  --color-btn-dark-text:  #cde8d4;
+  --color-btn-light-bg:   #243c2b;
+  --color-btn-light-text: #cde8d4;
+  --color-divider:        #3a5c44;
+
+  --color-primary:    #4caf70;
+  --color-on-primary: #1b2e22;
+  --color-link:       #7dd8a0;
+  --color-hover-bg:   rgba(76, 175, 112, 0.12);
+  --color-code-bg:    #111e17;
+  --color-code-text:  #cde8d4;
+}
+
+/* --- Tron Theme ---
+ * Inspired by the Tron: Legacy aesthetic — dark navy background
+ * with electric cyan text and sky-blue accents.
+ */
+[data-theme="tron"] {
+  --color-bg:             #0f172a;
+  --color-text:           #67e8f9;
+  --color-card-bg:        #1e293b;
+  --color-card-border:    #67e8f9;
+  --color-btn-dark-bg:    #0ea5e9;
+  --color-btn-dark-text:  #0f172a;
+  --color-btn-light-bg:   #1e293b;
+  --color-btn-light-text: #67e8f9;
+  --color-divider:        #0ea5e9;
+
+  --color-primary:    #0ea5e9;
+  --color-on-primary: #0f172a;
+  --color-link:       #67e8f9;
+  --color-hover-bg:   rgba(14, 165, 233, 0.08);
+  --color-code-bg:    #232b36;
+  --color-code-text:  #67e8f9;
+}
+
+/* --- Midnight Theme ---
+ * A deep night-sky palette: near-black background, muted
+ * blue-grey text, teal (#5ce1b5) primary accent, and
+ * light-blue (#8bd4ff) link colour.
+ */
+[data-theme="midnight"] {
+  --color-bg:             #0b1016;
+  --color-text:           #e7edf2;
+  --color-card-bg:        #131c28;
+  --color-card-border:    #263141;
+  --color-btn-dark-bg:    #263141;
+  --color-btn-dark-text:  #e7edf2;
+  --color-btn-light-bg:   #0f151e;
+  --color-btn-light-text: #e7edf2;
+  --color-divider:        #263141;
+
+  --color-primary:    #5ce1b5;
+  --color-on-primary: #0b1016;
+  --color-link:       #8bd4ff;
+  --color-hover-bg:   rgba(92, 225, 181, 0.12);
+  --color-code-bg:    #0f151e;
+  --color-code-text:  #e7edf2;
+}
+
+
+/* ============================================================
+ * 2. BASE RESET
+ * Sets the theme background on <html> to prevent a flash of
+ * white before React mounts and ThemeProvider runs.
+ * ============================================================ */
+
+html {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+/* ============================================================
+ * 3. COMPONENT STYLES
+ * All classes are prefixed with 'etn-' (Evolution Theme eNgine)
+ * to avoid collisions with the consumer application's CSS.
+ * ============================================================ */
+
+/* --- ThemeNavBar (.etn-navbar) --- */
+.etn-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 56px;
+  background-color: var(--color-card-bg);
+  border-bottom: 1px solid var(--color-card-border);
+  gap: 16px;
+  /* Stays at the top when used as a sticky header */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.etn-navbar-brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.etn-navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+.etn-navbar-link {
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  opacity: 0.85;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.etn-navbar-link:hover {
+  opacity: 1;
+  color: var(--color-primary);
+}
+
+/* --- ThemeSelector (.etn-theme-selector) --- */
+.etn-theme-selector {
+  padding: 6px 10px;
+  background-color: var(--color-card-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-card-border);
+  border-radius: 4px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  /* Prevent the select from shrinking inside a flex navbar */
+  flex-shrink: 0;
+  transition: border-color 0.15s ease;
+}
+
+.etn-theme-selector:hover {
+  border-color: var(--color-primary);
+}
+
+.etn-theme-selector:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-hover-bg);
+}
+
+/* Responsive: hide nav links on small screens */
+@media (max-width: 600px) {
+  .etn-navbar-links {
+    display: none;
+  }
+}
