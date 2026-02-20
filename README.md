@@ -276,6 +276,22 @@ const MY_THEMES = {
 <ThemeNavBar themes={MY_THEMES} />
 ```
 
+Bear in mind, when you pass a themes prop to either component, it will only include the themes you list.
+
+*If you exclude any of the default themes, they will not be shown in the dropdown. If you wish to include any of the default themes, **be sure to include their names in your theme list.***
+
+---
+
+## Built-in Themes
+
+| Key | Name | Background | Primary Accent |
+|---|---|---|---|
+| `light` | Light | `#f8f9fa` | `#1976d2` (blue) |
+| `dark` | Dark | `#212529` | `#90caf9` (light blue) |
+| `forest` | Forest | `#1b2e22` | `#4caf70` (green) |
+| `tron` | Tron | `#0f172a` | `#0ea5e9` (cyan) |
+| `midnight` | Midnight | `#0b1016` | `#5ce1b5` (teal) |
+
 ---
 
 ## How the Engine Works
@@ -396,18 +412,6 @@ Injects a custom `[data-theme]` CSS block at runtime.
 | `vars` | `object` | CSS variable declarations. Keys omit the leading `--`. |
 
 Calling `registerTheme` again with the same `name` replaces the previous injection.
-
----
-
-## Built-in Themes
-
-| Key | Name | Background | Primary Accent |
-|---|---|---|---|
-| `light` | Light | `#f8f9fa` | `#1976d2` (blue) |
-| `dark` | Dark | `#212529` | `#90caf9` (light blue) |
-| `forest` | Forest | `#1b2e22` | `#4caf70` (green) |
-| `tron` | Tron | `#0f172a` | `#0ea5e9` (cyan) |
-| `midnight` | Midnight | `#0b1016` | `#5ce1b5` (teal) |
 
 ---
 
