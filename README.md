@@ -2,6 +2,9 @@
 
 A plug-and-play React theme engine built on CSS custom properties. It ships with five polished built-in themes, a standalone theme-selector dropdown, and an optional barebones navbar — all wired together through React Context with automatic `localStorage` persistence.
 
+[Live Demo](https://evolution-theme-engine-demo.vercel.app/)  
+[Live Demo (Source Code)](https://github.com/james-evolution/evolution-theme-engine-demo)
+
 ## Features
 
 - **Five built-in themes** — Light, Dark, Forest, Tron, Midnight
