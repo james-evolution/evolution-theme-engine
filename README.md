@@ -74,6 +74,8 @@ function MyHeader() {
 
 Use this when you want a complete, ready-made navbar with the theme selector pre-rendered inside it.
 
+**Multi-page app** (standard `<a>` tags, full navigation):
+
 ```jsx
 import { ThemeNavBar } from '@evolution-james/evolution-theme-engine';
 
@@ -82,11 +84,39 @@ function App() {
     <>
       <ThemeNavBar
         title="My App"
+        titleHref="/"
         links={[
           { label: 'Home',    href: '/' },
           { label: 'About',   href: '/about' },
           { label: 'Contact', href: '/contact' },
         ]}
+      />
+      {/* rest of your app */}
+    </>
+  );
+}
+```
+
+**Single-page app with React Router** (no page refreshes):
+
+```jsx
+import { Link } from 'react-router-dom';
+import { ThemeNavBar } from '@evolution-james/evolution-theme-engine';
+
+function App() {
+  return (
+    <>
+      <ThemeNavBar
+        title="My App"
+        titleHref="/"
+        links={[
+          { label: 'Home',    href: '/' },
+          { label: 'About',   href: '/about' },
+          { label: 'Contact', href: '/contact' },
+        ]}
+        renderLink={(props) => (
+          <Link to={props.href} className={props.className}>{props.children}</Link>
+        )}
       />
       {/* rest of your app */}
     </>
@@ -318,7 +348,9 @@ registerTheme('ocean', {
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `title` | `string` | `'My App'` | Brand text shown on the left of the navbar. |
-| `links` | `Array<{ label, href }>` | Placeholder links | Navigation links rendered in the center. |
+| `titleHref` | `string` | `undefined` | If provided, the brand text becomes a link pointing to this URL. Omit to render a plain `<span>`. |
+| `links` | `Array<{ label, href, onClick? }>` | Placeholder links | Navigation links rendered in the center. If an entry includes `onClick`, the default browser navigation is prevented and `onClick` is called instead — use this for SPA navigation (e.g. React Router's `navigate()`). |
+| `renderLink` | `(props) => ReactNode` | `undefined` | Render prop for full control over link rendering. `props` contains `href`, `children`, and `className`. Applied to both the title link and all nav links. Use this for React Router: return `<Link to={props.href} className={props.className}>{props.children}</Link>`. Takes precedence over individual `onClick` handlers. |
 | `themes` | `object` | All 5 built-in themes | Forwarded to the internal `<ThemeSelector>`. |
 | `className` | `string` | `''` | Extra CSS classes added to the `<nav>` (alongside `etn-navbar`). |
 | `style` | `object` | `{}` | Inline styles for the `<nav>`. |

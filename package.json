@@ -1,6 +1,6 @@
 {
   "name": "@evolution-james/evolution-theme-engine",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A plug-and-play React theme engine with CSS variable-based theming, localStorage persistence, and optional navbar component.",
   "keywords": [
     "react",
@@ -34,7 +34,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/james-evolution/evolution-theme-engine.git"
+    "url": "git+https://github.com/james-evolution/evolution-theme-engine.git"
   },
   "main": "dist/index.js",
   "exports": {
